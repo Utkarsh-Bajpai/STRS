@@ -14,7 +14,7 @@
     <TextView
         android:text="Company Registration"
         android:textAllCaps="true"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -46,7 +46,7 @@
         android:layout_below="@+id/etCName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/etCUsername"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -74,31 +74,45 @@
         android:layout_below="@+id/etCPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/etCMode"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Mode Of Transport" />
+        android:hint="Company Location" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="60sp"
+        android:layout_height="40sp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:text="Mode:"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/spinner_Cmode"
+        android:layout_toLeftOf="@+id/spinner_Cmode"
+        android:layout_toStartOf="@+id/spinner_Cmode" />
+
+    <Spinner
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:id="@+id/spinner_Cmode"
+        android:spinnerMode="dropdown"
+        android:hint="Mode of Transport Offered"
+        android:layout_below="@+id/etCMode"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etCMode"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="42dp"
         android:id="@+id/bCRegister"
-        android:background="#EF5350"/>
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:id="@+id/spinner1"
-        android:layout_below="@+id/bCRegister"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:spinnerMode="dropdown" />
+        android:background="#EF5350"
+        android:layout_below="@+id/spinner_Cmode"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 

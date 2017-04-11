@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.strs.Splash"
-    android:background="#FFF176">
+    android:background="#FFF59D">
 
 
     <ImageView
@@ -25,7 +25,7 @@
     <TextView
         android:text="Smart Transport Reservation System"
         android:textAllCaps="true"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"

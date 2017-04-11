@@ -22,7 +22,7 @@
     <TextView
         android:text="Customer Login"
         android:textAllCaps="true"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#1A237E"
@@ -86,7 +86,7 @@
     <TextView
         android:text="Register Here"
         android:textColor="#000000"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvRegisterHere"

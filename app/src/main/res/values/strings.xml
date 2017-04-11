@@ -1,3 +1,11 @@
 <resources>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_unknown">Unknown</string>
+    <string name="mode_airplane">Air Plane</string>
+    <string name="mode_cab">Cab/Taxi</string>
+    <string name="mode_train">Train</string>
+    <string name="mode_bus">Bus</string>
     <string name="app_name">STRS</string>
+
 </resources>
