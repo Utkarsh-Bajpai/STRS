@@ -64,7 +64,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                         } else if (selection.equals(getString(R.string.gender_female))) {
                             mGender = 2;//Female
                         } else {
-                            mGender = 3;//Unknown
+                            mGender = 0;//Unknown
                         }
                     }
                 }
@@ -72,7 +72,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 // Because AdapterView is an abstract class, onNothingSelected must be defined
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    mGender = 3;
+                    mGender = 0;
                 }
             });
         }

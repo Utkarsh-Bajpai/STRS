@@ -7,5 +7,6 @@
     <string name="mode_train">Train</string>
     <string name="mode_bus">Bus</string>
     <string name="app_name">STRS</string>
+    <string name="mode_unknown">Unknown</string>
 
 </resources>

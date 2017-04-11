@@ -65,8 +65,10 @@ public class CompanyRegisterActivity extends AppCompatActivity {
                         mode = 2;//Bus
                     } else if (selection.equals(getString(R.string.mode_train))) {
                         mode = 3;//Train
+                    } else if (selection.equals(getString(R.string.mode_airplane))) {
+                        mode = 4;//Train
                     } else {
-                        mode = 4;//Air Plane
+                        mode = 0;//Unknown
                     }
                 }
             }
@@ -74,7 +76,7 @@ public class CompanyRegisterActivity extends AppCompatActivity {
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mode = 4;
+                mode = 0;//Unknown
             }
         });
     }
