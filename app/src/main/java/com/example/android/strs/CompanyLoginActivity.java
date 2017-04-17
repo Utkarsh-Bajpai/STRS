@@ -7,9 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CompanyLoginActivity extends AppCompatActivity
 {
+
+    CompanyDatabaseHelper helper = new CompanyDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,5 +34,29 @@ public class CompanyLoginActivity extends AppCompatActivity
                 CompanyLoginActivity.this.startActivity(registerIntent1);
             }
         });
+
+        bCLogin.setOnClickListener(new View.OnClickListener()
+        {
+
+            public void onClick(View v)
+            {
+                String username = etCUsername.getText().toString();
+                String password = etCPassword.getText().toString();
+
+                String password1 = helper.searchPassword(username);
+
+                if(password.equals(password1))
+                {
+                    Intent registerIntent2 = new Intent(CompanyLoginActivity.this, CompanyAreaActivity.class);
+                    CompanyLoginActivity.this.startActivity(registerIntent2);
+                }
+                else
+                {
+                    Toast pass = Toast.makeText(CompanyLoginActivity.this, "Invalid Credentials!!!", Toast.LENGTH_SHORT);
+                    pass.show();
+                }
+            }
+        });
+
     }
 }

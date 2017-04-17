@@ -25,7 +25,6 @@ public class CustomerLoginActivity extends AppCompatActivity
 
         tvRegisterHere.setOnClickListener(new View.OnClickListener()
         {
-
             public void onClick(View v)
             {
                 Intent registerIntent = new Intent(CustomerLoginActivity.this, CustomerRegisterActivity.class);

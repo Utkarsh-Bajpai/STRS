@@ -1,5 +1,6 @@
 package com.example.android.strs;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,15 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class CompanyRegisterActivity extends AppCompatActivity {
+public class CompanyRegisterActivity extends AppCompatActivity
+{
 
-        private EditText etCMode;
-        private EditText etCName;
-        private EditText etCUsername;
-        private EditText etCPassword;
-        private Button bCRegister;
-        private Spinner modeSpinner;
+    CompanyDatabaseHelper helper =  new CompanyDatabaseHelper(this);
+
+    private EditText CLocation;
+    private EditText CName;
+    private EditText CUsername;
+    private EditText CPassword;
+    private Button CRegister;
+    private Spinner modeSpinner;
 
     private int mode = 0;
 
@@ -27,14 +32,68 @@ public class CompanyRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company_register);
 
         // Find all relevant views that we will need to read user input from
-        etCMode = (EditText) findViewById(R.id.etCMode);
-        etCName = (EditText) findViewById(R.id.etCName);
-        etCUsername = (EditText) findViewById(R.id.etCUsername);
-        etCPassword = (EditText) findViewById(R.id.etCPassword);
-        bCRegister = (Button) findViewById(R.id.bCRegister);
+        CLocation = (EditText) findViewById(R.id.etCLocation);
+        CName = (EditText) findViewById(R.id.etCName);
+        CUsername = (EditText) findViewById(R.id.etCUsername);
+        CPassword = (EditText) findViewById(R.id.etCPassword);
+        CRegister = (Button) findViewById(R.id.bCRegister);
         modeSpinner = (Spinner) findViewById(R.id.spinner_Cmode);
 
         setupSpinner();
+
+        /*public void onCompanyRegisterActivityClick(View v)
+        {
+            if(v.getId()==R.id.bCRegister)
+            {
+                String CLocationstr = CLocation.getText().toString();
+                String CNamestr = CName.getText().toString();
+                String CUsernamestr = CUsername.getText().toString();
+                String CPasswordstr = CPassword.getText().toString();
+                String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
+
+                //Insert the details in database
+                CompanyContact c = new CompanyContact();
+                c.setcusername(CUsernamestr);
+                c.setclocation(CLocationstr);
+                c.setcmode(modeSpinnerstr);
+                c.setcname(CNamestr);
+                c.setcpassword(CPasswordstr);
+
+                helper.insertContact(c);
+
+                Intent registerIntent = new Intent(CompanyRegisterActivity.this, CompanyLoginActivity.class);
+                CompanyRegisterActivity.this.startActivity(registerIntent);
+
+                Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Registration Successfull!!!", Toast.LENGTH_SHORT);
+                pass.show();
+            }
+        }/*
+
+        /*CRegister.setOnClickListener(new View.OnClickListener()
+        {
+
+            public void onClick(View v)
+            {
+                String CLocationstr = CLocation.getText().toString();
+                String CNamestr = CName.getText().toString();
+                String CUsernamestr = CUsername.getText().toString();
+                String CPasswordstr = CPassword.getText().toString();
+                String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
+
+                //Insert the details in database
+                CompanyContact c = new CompanyContact();
+                c.setcusername(CUsernamestr);
+                c.setclocation(CLocationstr);
+                c.setcmode(modeSpinnerstr);
+                c.setcname(CNamestr);
+                c.setcpassword(CPasswordstr);
+
+                helper.insertContact(c);
+                Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Invalid Credentials!!!", Toast.LENGTH_SHORT);
+                pass.show();
+            }
+
+        });*/
 
     }
 
@@ -80,4 +139,33 @@ public class CompanyRegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*public void onCompanyRegisterActivityClick(View v)
+    {
+        if(v.getId()==R.id.bCRegister)
+        {
+            String CLocationstr = CLocation.getText().toString();
+            String CNamestr = CName.getText().toString();
+            String CUsernamestr = CUsername.getText().toString();
+            String CPasswordstr = CPassword.getText().toString();
+            String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
+
+            //Insert the details in database
+            CompanyContact c = new CompanyContact();
+            c.setcusername(CUsernamestr);
+            c.setclocation(CLocationstr);
+            c.setcmode(modeSpinnerstr);
+            c.setcname(CNamestr);
+            c.setcpassword(CPasswordstr);
+
+            helper.insertContact(c);
+
+                Intent registerIntent = new Intent(CompanyRegisterActivity.this, CompanyLoginActivity.class);
+                CompanyRegisterActivity.this.startActivity(registerIntent);
+
+            Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Registration Successfull!!!", Toast.LENGTH_SHORT);
+            pass.show();
+        }
+    }*/
+
 }

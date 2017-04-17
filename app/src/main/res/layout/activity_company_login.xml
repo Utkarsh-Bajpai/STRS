@@ -12,87 +12,101 @@
     android:background="#FFCDD2">
 
 
-    <ImageView
-        android:id="@+id/photo_image_viewb"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/company"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Company Login"
-        android:textAllCaps="true"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#F44336"
-        android:textStyle="bold"
-        android:id="@+id/textView2"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/photo_image_viewb"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/etCUsername"
-        android:hint="User Name"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/etCPassword"
-        android:hint="Password"
-        android:layout_below="@+id/etCUsername"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etCPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:id="@+id/bCLogin"
-        android:background="#EF5350"/>
+            <ImageView
+                android:id="@+id/photo_image_viewb"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/company"
+                android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Not a member?"
-        android:ems="10"
-        android:gravity="center"
-        android:id="@+id/editText4"
-        android:textColor="#000000"
-        android:layout_below="@+id/bCLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp" />
+            <TextView
+                android:text="Company Login"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:textStyle="bold"
+                android:id="@+id/textView2"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/photo_image_viewb"
+                android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:text="Register Here"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvCRegisterHere"
-        android:textColor="#000000"
-        android:layout_marginBottom="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/etCUsername"
+                android:hint="User Name"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/etCPassword"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_below="@+id/etCUsername"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:text="Login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etCPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:id="@+id/bCLogin"
+                android:background="#EF5350"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Not a member?"
+                android:ems="10"
+                android:gravity="center"
+                android:id="@+id/editText4"
+                android:textColor="#000000"
+                android:layout_marginTop="40dp"
+                android:layout_below="@+id/bCLogin"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="Register Here"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCRegisterHere"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/editText4"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>>
+    </ScrollView>
 </RelativeLayout>
