@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,10 +13,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.android.strs.data_company.CompanyContact;
+import com.example.android.strs.data_company.CompanyDatabaseHelper;
+
 public class CompanyRegisterActivity extends AppCompatActivity
 {
 
-    CompanyDatabaseHelper helper =  new CompanyDatabaseHelper(this);
+    CompanyDatabaseHelper helper = new CompanyDatabaseHelper(this);
 
     private EditText CLocation;
     private EditText CName;
@@ -26,8 +30,11 @@ public class CompanyRegisterActivity extends AppCompatActivity
 
     private int mode = 0;
 
+    boolean isValid = true;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_register);
 
@@ -41,66 +48,49 @@ public class CompanyRegisterActivity extends AppCompatActivity
 
         setupSpinner();
 
-        /*public void onCompanyRegisterActivityClick(View v)
-        {
-            if(v.getId()==R.id.bCRegister)
-            {
-                String CLocationstr = CLocation.getText().toString();
-                String CNamestr = CName.getText().toString();
-                String CUsernamestr = CUsername.getText().toString();
-                String CPasswordstr = CPassword.getText().toString();
-                String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
-
-                //Insert the details in database
-                CompanyContact c = new CompanyContact();
-                c.setcusername(CUsernamestr);
-                c.setclocation(CLocationstr);
-                c.setcmode(modeSpinnerstr);
-                c.setcname(CNamestr);
-                c.setcpassword(CPasswordstr);
-
-                helper.insertContact(c);
-
-                Intent registerIntent = new Intent(CompanyRegisterActivity.this, CompanyLoginActivity.class);
-                CompanyRegisterActivity.this.startActivity(registerIntent);
-
-                Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Registration Successfull!!!", Toast.LENGTH_SHORT);
-                pass.show();
-            }
-        }/*
-
-        /*CRegister.setOnClickListener(new View.OnClickListener()
+        CRegister.setOnClickListener(new View.OnClickListener()
         {
 
             public void onClick(View v)
             {
-                String CLocationstr = CLocation.getText().toString();
-                String CNamestr = CName.getText().toString();
-                String CUsernamestr = CUsername.getText().toString();
-                String CPasswordstr = CPassword.getText().toString();
-                String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
+                isValid= validateAccount();
 
-                //Insert the details in database
-                CompanyContact c = new CompanyContact();
-                c.setcusername(CUsernamestr);
-                c.setclocation(CLocationstr);
-                c.setcmode(modeSpinnerstr);
-                c.setcname(CNamestr);
-                c.setcpassword(CPasswordstr);
+                if(isValid)
+                {
+                    String CLocationstr = CLocation.getText().toString();
+                    String CNamestr = CName.getText().toString();
+                    String CUsernamestr = CUsername.getText().toString();
+                    String CPasswordstr = CPassword.getText().toString();
+                    String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
 
-                helper.insertContact(c);
-                Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Invalid Credentials!!!", Toast.LENGTH_SHORT);
-                pass.show();
+                    //Insert the details in database
+                    CompanyContact c = new CompanyContact();
+                    c.setcusername(CUsernamestr);
+                    c.setclocation(CLocationstr);
+                    c.setcmode(modeSpinnerstr);
+                    c.setcname(CNamestr);
+                    c.setcpassword(CPasswordstr);
+
+                    helper.insertContact(c);
+
+                    Intent registerIntent = new Intent(CompanyRegisterActivity.this, CompanyLoginActivity.class);
+                    CompanyRegisterActivity.this.startActivity(registerIntent);
+
+                    Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Registration Successfull!!!", Toast.LENGTH_SHORT);
+                    pass.show();
+                }
+
             }
 
-        });*/
+        });
 
     }
 
     /**
      * Setup the dropdown spinner that allows the user to select the gender of the pet.
      */
-    private void setupSpinner() {
+    private void setupSpinner()
+    {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
         ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
@@ -140,32 +130,42 @@ public class CompanyRegisterActivity extends AppCompatActivity
         });
     }
 
-    /*public void onCompanyRegisterActivityClick(View v)
+    private boolean validateAccount()
     {
-        if(v.getId()==R.id.bCRegister)
-        {
-            String CLocationstr = CLocation.getText().toString();
-            String CNamestr = CName.getText().toString();
-            String CUsernamestr = CUsername.getText().toString();
-            String CPasswordstr = CPassword.getText().toString();
-            String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
+        isValid = true;
 
-            //Insert the details in database
-            CompanyContact c = new CompanyContact();
-            c.setcusername(CUsernamestr);
-            c.setclocation(CLocationstr);
-            c.setcmode(modeSpinnerstr);
-            c.setcname(CNamestr);
-            c.setcpassword(CPasswordstr);
-
-            helper.insertContact(c);
-
-                Intent registerIntent = new Intent(CompanyRegisterActivity.this, CompanyLoginActivity.class);
-                CompanyRegisterActivity.this.startActivity(registerIntent);
-
-            Toast pass = Toast.makeText(CompanyRegisterActivity.this, "Registration Successfull!!!", Toast.LENGTH_SHORT);
-            pass.show();
+        if (CName.length() < 3) {
+            CName.setError("Company Name should have atleast 3 characters");
+            isValid = false;
+            return isValid;
+        } else {
+            CName.setError(null);
         }
-    }*/
 
+        if (CUsername.length() < 3) {
+            CUsername.setError("Company Username should have atleast 3 characters");
+            isValid = false;
+            return isValid;
+        } else {
+            CUsername.setError(null);
+        }
+
+        if (CPassword.length() < 4 || CPassword.length() > 10) {
+            CPassword.setError("Password should  have 4 to 10 alphanumeric characters");
+            isValid = false;
+            return isValid;
+        } else {
+            CPassword.setError(null);
+        }
+
+        if (CLocation.length() < 3) {
+            CLocation.setError("Location should have atleast 3 characters");
+            isValid = false;
+            return isValid;
+        } else {
+            CLocation.setError(null);
+        }
+
+        return isValid;
+    }
 }

@@ -9,10 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.strs.data_company.CompanyDatabaseHelper;
+
 public class CompanyLoginActivity extends AppCompatActivity
 {
 
     CompanyDatabaseHelper helper = new CompanyDatabaseHelper(this);
+
+    Boolean isValid = true;
+
+    private EditText etCUsername;
+    private EditText etCPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,8 +27,8 @@ public class CompanyLoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_login);
 
-        final EditText etCUsername = (EditText) findViewById(R.id.etCUsername);
-        final EditText etCPassword = (EditText) findViewById(R.id.etCPassword);
+        etCUsername = (EditText) findViewById(R.id.etCUsername);
+        etCPassword = (EditText) findViewById(R.id.etCPassword);
         final Button bCLogin = (Button) findViewById(R.id.bCLogin);
         final TextView tvCRegisterHere = (TextView) findViewById(R.id.tvCRegisterHere);
 
@@ -40,23 +47,51 @@ public class CompanyLoginActivity extends AppCompatActivity
 
             public void onClick(View v)
             {
-                String username = etCUsername.getText().toString();
-                String password = etCPassword.getText().toString();
+                isValid= validateAccount();
 
-                String password1 = helper.searchPassword(username);
+                if(isValid)
+                {
+                    String username = etCUsername.getText().toString();
+                    String password = etCPassword.getText().toString();
 
-                if(password.equals(password1))
-                {
-                    Intent registerIntent2 = new Intent(CompanyLoginActivity.this, CompanyAreaActivity.class);
-                    CompanyLoginActivity.this.startActivity(registerIntent2);
-                }
-                else
-                {
-                    Toast pass = Toast.makeText(CompanyLoginActivity.this, "Invalid Credentials!!!", Toast.LENGTH_SHORT);
-                    pass.show();
+                    String password1 = helper.searchPassword(username);
+
+                    if(password.equals(password1))
+                    {
+                        Intent registerIntent2 = new Intent(CompanyLoginActivity.this, CompanyAreaActivity.class);
+                        CompanyLoginActivity.this.startActivity(registerIntent2);
+                    }
+                    else
+                    {
+                        Toast pass = Toast.makeText(CompanyLoginActivity.this, "Invalid Credentials!!!", Toast.LENGTH_SHORT);
+                        pass.show();
+                    }
                 }
             }
         });
 
+    }
+
+    private boolean validateAccount()
+    {
+        isValid = true;
+
+        if (etCUsername.length() < 3) {
+            etCUsername.setError("Username should have atleast 3 characters");
+            isValid = false;
+            return isValid;
+        } else {
+            etCUsername.setError(null);
+        }
+
+        if (etCPassword.length() < 4 || etCPassword.length() > 10) {
+            etCPassword.setError("Password should  have 4 to 10 alphanumeric characters");
+            isValid = false;
+            return isValid;
+        } else {
+            etCPassword.setError(null);
+        }
+
+        return isValid;
     }
 }

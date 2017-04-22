@@ -3,6 +3,7 @@ package com.example.android.strs;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CompanyAreaActivity extends AppCompatActivity {
 
@@ -11,6 +12,6 @@ public class CompanyAreaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_area);
 
-        final EditText Str = (EditText) findViewById(R.id.textView5);
+        final TextView Str = (TextView) findViewById(R.id.textView5);
     }
 }
