@@ -17,9 +17,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final TypeWriter tw = (TypeWriter) findViewById(R.id.textView7);
+
+        tw.setCharacterDelay(120);
+        tw.animateText("Smart Transport Reservation System");
+
         final Button bCustomerLogin = (Button) findViewById(R.id.bCustomerLogin);
         final Button bCompanyLogin = (Button) findViewById(R.id.bCompanyLogin);
-
 
         bCompanyLogin.setOnClickListener(new View.OnClickListener()
         {

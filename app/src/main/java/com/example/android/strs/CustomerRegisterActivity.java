@@ -1,30 +1,45 @@
 package com.example.android.strs;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.media.MediaCodec;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.strs.data_customer.CustomerContact;
 import com.example.android.strs.data_customer.CustomerDatabaseHelper;
 
-public class CustomerRegisterActivity extends AppCompatActivity {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CustomerRegisterActivity extends AppCompatActivity
+{
 
         CustomerDatabaseHelper helper = new CustomerDatabaseHelper(this);
 
-        private EditText etAge;
+        private EditText etDate;
         private EditText etName;
         private EditText etUsername;
         private EditText etPassword;
+        private EditText etEmail;
         private Button bRegister;
         private Spinner mGenderSpinner;
+        private Button btn;
+        int year_x, month_x,day_x;
+        static final int DIALOG_ID = 0;
 
         private int mGender = 0;
 
@@ -36,38 +51,49 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             setContentView(R.layout.activity_customer_register);
 
             // Find all relevant views that we will need to read user input from
-            etAge = (EditText) findViewById(R.id.etAge);
             etName = (EditText) findViewById(R.id.etName);
             etUsername = (EditText) findViewById(R.id.etUsername);
             etPassword = (EditText) findViewById(R.id.etPassword);
+            etDate = (EditText) findViewById(R.id.etDate);
             bRegister = (Button) findViewById(R.id.bRegister);
             mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
+            etEmail = (EditText) findViewById(R.id.etEmail);
 
             setupSpinner();
+
+            final Calendar cal = Calendar.getInstance();
+            year_x = cal.get(Calendar.YEAR);
+            month_x = cal.get(Calendar.MONTH);
+            day_x = cal.get(Calendar.DAY_OF_MONTH);
+
+
+            showDialogOnButtonClick();
 
             bRegister.setOnClickListener(new View.OnClickListener()
             {
 
                 public void onClick(View v)
                 {
+
                     isValid = validateAccount();
 
                     if(isValid)
                     {
-                        String etAgestr = etAge.getText().toString();
-                        Integer etAgeint = Integer.parseInt(etAgestr);
+                        String etDatestr = etDate.getText().toString();
                         String etNamestr = etName.getText().toString();
                         String etUsernamestr = etUsername.getText().toString();
                         String etPasswordstr = etPassword.getText().toString();
                         String GenderSpinnerstr = mGenderSpinner.getSelectedItem().toString();
+                        String etEmailstr = etEmail.getText().toString();
 
                         //Insert the details in database
                         CustomerContact c = new CustomerContact();
                         c.setetusername(etUsernamestr);
                         c.setetname(etNamestr);
                         c.setetpassword(etPasswordstr);
-                        c.setetAge(etAgeint);
+                        c.setetDate(etDatestr);
                         c.setgender(GenderSpinnerstr);
+                        c.setetEmail(etEmailstr);
 
                         helper.insertContact(c);
 
@@ -123,6 +149,64 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             });
         }
 
+        private void showDialogOnButtonClick()
+        {
+            btn = (Button)findViewById(R.id.dob);
+            btn.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog(DIALOG_ID);
+                        }
+                    }
+            );
+        }
+
+        @Override
+        protected Dialog onCreateDialog(int id){
+            if(id== DIALOG_ID)
+            {
+                return new DatePickerDialog(CustomerRegisterActivity.this, dpickerListener, year_x, month_x, day_x);
+            }
+            return null;
+        }
+
+        private DatePickerDialog.OnDateSetListener dpickerListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                year_x = year;
+                month_x = month + 1;
+                day_x = dayOfMonth;
+
+                Toast.makeText(CustomerRegisterActivity.this,day_x + "/" + month_x + "/" + year_x, Toast.LENGTH_LONG).show();
+
+                if(day_x<10)
+                {
+                    if(month_x<10)
+                    {
+                        etDate.setText( "0"+day_x + "/" + "0"+month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    }
+                    else
+                    {
+                        etDate.setText( "0"+day_x + "/" + month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    }
+                }
+                else
+                {
+                    if(month_x<10)
+                    {
+                        etDate.setText( day_x + "/" + "0"+month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    }
+                    else
+                    {
+                        etDate.setText( day_x + "/" + month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    }
+                }
+
+
+            }
+        };
+
     private boolean validateAccount()
     {
         isValid = true;
@@ -151,15 +235,63 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             etPassword.setError(null);
         }
 
-        if (etAge.length() != 2) {
-            etAge.setError("Age should be between 10 to 99 years");
+        String etDatestr = etDate.getText().toString();
+        year_x = Integer.parseInt(etDatestr.substring(6));
+        month_x = Integer.parseInt(etDatestr.substring(3,5));
+        day_x = Integer.parseInt(etDatestr.substring(0,2));
+
+        int a= validDate(etDatestr);
+        if (a!=1)
+        {
+            etDate.setError("Invalid Date of Birth\nDOB Format-[DD/MM/YYYY]");
+            isValid = false;
+            return isValid;
+        }
+        else if(year_x>2008 || year_x<1917)
+        {
+
+            etDate.setError("Your age should be between 10 to 100 years to register");
+            isValid = false;
+            return isValid;
+        }
+        else
+        {
+            etDate.setError(null);
+        }
+
+        String etEmailstr = etEmail.getText().toString();
+        if (etEmail.length() < 2 || !Patterns.EMAIL_ADDRESS.matcher(etEmailstr).matches()) {
+            etEmail.setError("Invalid Email Address");
             isValid = false;
             return isValid;
         } else {
-            etAge.setError(null);
+            etEmail.setError(null);
+        }
+
+        String username = etUsername.getText().toString();
+        String password = helper.searchPassword(username);
+        if(password!="Not Found!")
+        {
+            etUsername.setError("Customer Username Already Exists!!!\nEnter a new Username");
+            isValid = false;
+            return isValid;
         }
 
         return isValid;
+    }
+
+    private int validDate(String date)
+    {
+        String dob = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$";
+        Matcher matcherobj = Pattern.compile(dob).matcher(date);
+        if(matcherobj.matches())
+        {
+            return  1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
 }

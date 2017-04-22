@@ -166,6 +166,15 @@ public class CompanyRegisterActivity extends AppCompatActivity
             CLocation.setError(null);
         }
 
+        String username = CUsername.getText().toString();
+        String password = helper.searchPassword(username);
+        if(password!="Not Found!")
+        {
+            CUsername.setError("Company Username Already Exists!!!\nEnter a new Username");
+            isValid = false;
+            return isValid;
+        }
+
         return isValid;
     }
 }
