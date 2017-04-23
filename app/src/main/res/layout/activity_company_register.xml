@@ -33,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="11dp"
                 android:textColor="#F44336"
                 android:textStyle="bold"
                 android:id="@+id/textView3" />
@@ -48,7 +47,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="35dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -94,26 +93,54 @@
                 android:layout_alignParentEnd="true"
                 android:hint="Company Location" />
 
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:layout_below="@+id/etCLocation"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/etCEmail"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:hint="Email Address" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_below="@+id/etCEmail"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/etCContact"
+                android:hint="Contact Number"
+                android:layout_alignParentEnd="true" />
+
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="60sp"
                 android:layout_height="40sp"
                 android:textSize="20sp"
                 android:gravity="center"
+                android:layout_below="@+id/etCContact"
                 android:text="Mode:"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignTop="@+id/spinner_Cmode"
-                android:layout_toLeftOf="@+id/spinner_Cmode"
-                android:layout_toStartOf="@+id/spinner_Cmode" />
+                android:layout_toStartOf="@+id/spinner_Cmode"
+                android:layout_alignBottom="@+id/spinner_Cmode" />
 
             <Spinner
-                android:layout_width="250sp"
+                android:layout_width="270sp"
                 android:layout_height="40sp"
                 android:id="@+id/spinner_Cmode"
+                android:textSize="20sp"
                 android:spinnerMode="dropdown"
                 android:hint="Mode of Transport Offered"
-                android:layout_below="@+id/etCLocation"
+                android:layout_below="@+id/etCContact"
                 android:layout_marginTop="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -122,7 +149,7 @@
                 android:text="Register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/bCRegister"
                 android:background="#EF5350"
                 android:layout_below="@+id/spinner_Cmode"

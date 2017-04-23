@@ -30,13 +30,15 @@ public class CustomerRegisterActivity extends AppCompatActivity
 
         CustomerDatabaseHelper helper = new CustomerDatabaseHelper(this);
 
-        private EditText etDate;
         private EditText etName;
         private EditText etUsername;
         private EditText etPassword;
+        private EditText etDate;
         private EditText etEmail;
-        private Button bRegister;
+        private EditText etContact;
         private Spinner mGenderSpinner;
+        private Button bRegister;
+
         private Button btn;
         int year_x, month_x,day_x;
         static final int DIALOG_ID = 0;
@@ -55,9 +57,10 @@ public class CustomerRegisterActivity extends AppCompatActivity
             etUsername = (EditText) findViewById(R.id.etUsername);
             etPassword = (EditText) findViewById(R.id.etPassword);
             etDate = (EditText) findViewById(R.id.etDate);
-            bRegister = (Button) findViewById(R.id.bRegister);
-            mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
+            etContact = (EditText) findViewById(R.id.etContact);
             etEmail = (EditText) findViewById(R.id.etEmail);
+            mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
+            bRegister = (Button) findViewById(R.id.bRegister);
 
             setupSpinner();
 
@@ -79,12 +82,13 @@ public class CustomerRegisterActivity extends AppCompatActivity
 
                     if(isValid)
                     {
-                        String etDatestr = etDate.getText().toString();
                         String etNamestr = etName.getText().toString();
                         String etUsernamestr = etUsername.getText().toString();
                         String etPasswordstr = etPassword.getText().toString();
-                        String GenderSpinnerstr = mGenderSpinner.getSelectedItem().toString();
+                        String etDatestr = etDate.getText().toString();
                         String etEmailstr = etEmail.getText().toString();
+                        String etContactstr = etContact.getText().toString();
+                        String GenderSpinnerstr = mGenderSpinner.getSelectedItem().toString();
 
                         //Insert the details in database
                         CustomerContact c = new CustomerContact();
@@ -94,6 +98,7 @@ public class CustomerRegisterActivity extends AppCompatActivity
                         c.setetDate(etDatestr);
                         c.setgender(GenderSpinnerstr);
                         c.setetEmail(etEmailstr);
+                        c.setetContact(etContactstr);
 
                         helper.insertContact(c);
 
@@ -266,6 +271,14 @@ public class CustomerRegisterActivity extends AppCompatActivity
             return isValid;
         } else {
             etEmail.setError(null);
+        }
+
+        if (etContact.length() < 10 || etContact.length() > 11 ) {
+            etContact.setError("Invalid Telephone/Mobile No.");
+            isValid = false;
+            return isValid;
+        } else {
+            etContact.setError(null);
         }
 
         String username = etUsername.getText().toString();

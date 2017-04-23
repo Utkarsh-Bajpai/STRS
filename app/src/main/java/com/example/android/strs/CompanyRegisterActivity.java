@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,12 +22,14 @@ public class CompanyRegisterActivity extends AppCompatActivity
 
     CompanyDatabaseHelper helper = new CompanyDatabaseHelper(this);
 
-    private EditText CLocation;
     private EditText CName;
     private EditText CUsername;
     private EditText CPassword;
-    private Button CRegister;
+    private EditText CLocation;
+    private EditText CEmail;
+    private EditText CContact;
     private Spinner modeSpinner;
+    private Button CRegister;
 
     private int mode = 0;
 
@@ -39,12 +42,14 @@ public class CompanyRegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_company_register);
 
         // Find all relevant views that we will need to read user input from
-        CLocation = (EditText) findViewById(R.id.etCLocation);
         CName = (EditText) findViewById(R.id.etCName);
         CUsername = (EditText) findViewById(R.id.etCUsername);
         CPassword = (EditText) findViewById(R.id.etCPassword);
-        CRegister = (Button) findViewById(R.id.bCRegister);
+        CLocation = (EditText) findViewById(R.id.etCLocation);
+        CEmail = (EditText) findViewById(R.id.etCEmail);
+        CContact = (EditText) findViewById(R.id.etCContact);
         modeSpinner = (Spinner) findViewById(R.id.spinner_Cmode);
+        CRegister = (Button) findViewById(R.id.bCRegister);
 
         setupSpinner();
 
@@ -57,19 +62,25 @@ public class CompanyRegisterActivity extends AppCompatActivity
 
                 if(isValid)
                 {
-                    String CLocationstr = CLocation.getText().toString();
                     String CNamestr = CName.getText().toString();
                     String CUsernamestr = CUsername.getText().toString();
                     String CPasswordstr = CPassword.getText().toString();
+                    String CLocationstr = CLocation.getText().toString();
+                    String CEmailstr = CEmail.getText().toString();
+                    String CContactstr = CContact.getText().toString();
                     String modeSpinnerstr = modeSpinner.getSelectedItem().toString();
 
                     //Insert the details in database
                     CompanyContact c = new CompanyContact();
-                    c.setcusername(CUsernamestr);
-                    c.setclocation(CLocationstr);
-                    c.setcmode(modeSpinnerstr);
                     c.setcname(CNamestr);
+                    c.setcusername(CUsernamestr);
                     c.setcpassword(CPasswordstr);
+                    c.setclocation(CLocationstr);
+                    c.setcemail(CEmailstr);
+                    c.setccontact(CContactstr);
+                    c.setcmode(modeSpinnerstr);
+
+
 
                     helper.insertContact(c);
 
@@ -164,6 +175,23 @@ public class CompanyRegisterActivity extends AppCompatActivity
             return isValid;
         } else {
             CLocation.setError(null);
+        }
+
+        String CEmailstr = CEmail.getText().toString();
+        if (CEmail.length() < 2 || !Patterns.EMAIL_ADDRESS.matcher(CEmailstr).matches()) {
+            CEmail.setError("Invalid Email Address");
+            isValid = false;
+            return isValid;
+        } else {
+            CEmail.setError(null);
+        }
+
+        if (CContact.length() < 10 || CContact.length() > 11 ) {
+            CContact.setError("Invalid Telephone/Mobile No.");
+            isValid = false;
+            return isValid;
+        } else {
+            CContact.setError(null);
         }
 
         String username = CUsername.getText().toString();

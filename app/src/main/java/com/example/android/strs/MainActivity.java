@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
         final TypeWriter tw = (TypeWriter) findViewById(R.id.textView7);
 
         tw.setCharacterDelay(120);
-        tw.animateText("Smart Transport Reservation System");
+        tw.animateText("Smart Transport Reservation\nSystem");
 
         final Button bCustomerLogin = (Button) findViewById(R.id.bCustomerLogin);
         final Button bCompanyLogin = (Button) findViewById(R.id.bCompanyLogin);
