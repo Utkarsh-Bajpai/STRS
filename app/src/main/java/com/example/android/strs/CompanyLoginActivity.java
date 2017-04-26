@@ -51,14 +51,15 @@ public class CompanyLoginActivity extends AppCompatActivity
 
                 if(isValid)
                 {
-                    String username = etCUsername.getText().toString();
+                    String cusername = etCUsername.getText().toString();
                     String password = etCPassword.getText().toString();
 
-                    String password1 = helper.searchPassword(username);
+                    String password1 = helper.searchPassword(cusername);
 
                     if(password.equals(password1))
                     {
                         Intent registerIntent2 = new Intent(CompanyLoginActivity.this, CompanyAreaActivity.class);
+                        registerIntent2.putExtra("cusername",cusername);
                         CompanyLoginActivity.this.startActivity(registerIntent2);
                     }
                     else

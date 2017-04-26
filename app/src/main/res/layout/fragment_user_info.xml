@@ -1,13 +1,145 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Customer_Tab_Layout.UserInfo">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-</FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="65dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="Customer Information"
+                android:textAllCaps="true"
+                android:textSize="25sp"
+                android:textColor="#1A237E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/textView4"
+                android:layout_below="@+id/photo"
+                android:layout_centerHorizontal="true"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/textView4"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:id="@+id/etName"
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:ems="10"
+                    android:layout_below="@+id/etName"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etUsername"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="User Name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:layout_below="@+id/etUsername"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etDate"
+                    android:text="Date of Birth [DD/MM/YYYY]"
+                    android:layout_toStartOf="@+id/dob"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:layout_below="@+id/etDate"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etEmail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Email Address" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_below="@+id/etEmail"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etContact"
+                    android:text="Contact Number"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Gender"
+                    android:textSize="20dp"
+                    android:id="@+id/textView"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:layout_below="@+id/etContact"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -9,25 +9,36 @@ import com.example.android.strs.Tab_Layout.AllTransportsAvailable;
 import com.example.android.strs.Tab_Layout.ViewPagerAdapter;
 import com.example.android.strs.Customer_Tab_Layout.MyBookings;
 import com.example.android.strs.Customer_Tab_Layout.UserInfo;
+import com.example.android.strs.data_customer.CustomerDatabaseHelper;
 
 public class CustomerAreaActivity extends AppCompatActivity
 {
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
+    public static String username;
+
+    CustomerDatabaseHelper helper = new CustomerDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_area);
+
+
+
+        username = getIntent().getStringExtra("username");
+
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragments(new AllTransportsAvailable(),"All Transports");
         viewPagerAdapter.addFragments(new MyBookings(),"My Bookings");
-        viewPagerAdapter.addFragments(new UserInfo(),"User Info");
+        viewPagerAdapter.addFragments(new UserInfo(),"My Account");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 }

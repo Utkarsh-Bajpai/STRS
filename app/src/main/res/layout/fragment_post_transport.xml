@@ -1,13 +1,177 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Company_Tab_Layout.PostTransport">
+    tools:context=".Company_Tab_Layout.PostTransport"
+    android:layout_marginTop="40dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Transport Registration"
+                android:textAllCaps="true"
+                android:textColor="#F44336"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etTName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="35dp"
+                android:ems="10"
+                android:hint="Transport Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etTSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etTName"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Transport Source"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etTDestination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etTSource"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Transport Destination"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etTDestination"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="time"
+                android:hint="Journey Duration" />
+
+            <EditText
+                android:id="@+id/Cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/Time"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Ticket Cost"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/DDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/Cost"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Departure Date [DD/MM/YYYY]"
+                android:layout_alignEnd="@+id/textView3" />
+
+            <EditText
+                android:id="@+id/DTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/DDate"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="time"
+                android:hint="Departure Time"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:id="@+id/Seats"
+                android:layout_width="60sp"
+                android:layout_height="40sp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/activity_main_timepicker"
+                android:layout_marginTop="20dp"
+                android:hint="Number of seats available"
+                android:inputType="number"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bTRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Seats"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="#EF5350"
+                android:text="Register"
+                android:layout_marginBottom="5dp"/>
+
+            <Button
+                android:id="@+id/buttonq"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_date_range_black_24dp"
+                android:layout_above="@+id/DTime"
+                android:layout_toEndOf="@+id/DDate" />
+
+            <TimePicker
+                android:id="@+id/activity_main_timepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/DTime"
+                android:layout_marginLeft="14dip"
+                android:layout_marginRight="16dip"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </FrameLayout>

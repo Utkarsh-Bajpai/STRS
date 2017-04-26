@@ -297,7 +297,7 @@ public class CustomerRegisterActivity extends AppCompatActivity
     {
         String dob = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$";
         Matcher matcherobj = Pattern.compile(dob).matcher(date);
-        if(matcherobj.matches())
+        if(matcherobj.matches() && etDate.length()==10)
         {
             return  1;
         }

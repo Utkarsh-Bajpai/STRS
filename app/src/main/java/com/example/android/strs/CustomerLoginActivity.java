@@ -58,6 +58,7 @@ public class CustomerLoginActivity extends AppCompatActivity
                     if(password.equals(password1))
                     {
                         Intent registerIntent2 = new Intent(CustomerLoginActivity.this, CustomerAreaActivity.class);
+                        registerIntent2.putExtra("username",username);
                         CustomerLoginActivity.this.startActivity(registerIntent2);
                     }
                     else

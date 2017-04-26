@@ -2,12 +2,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Company_Tab_Layout.CompanyInfo">
+    tools:context=".Company_Tab_Layout.CompanyInfo"
+    android:background="#FFCDD2">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="65dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/company"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="Company Information"
+                android:textAllCaps="true"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/textView4"
+                android:layout_marginTop="10dp"
+                android:textColor="#F44336"
+                android:layout_below="@+id/photo"
+                android:layout_centerHorizontal="true"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/textView4"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    android:id="@+id/etCName"
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:ems="10"
+                    android:layout_below="@+id/etCName"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etCUsername"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="User Name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:layout_below="@+id/etCUsername"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etCLocation"
+                    android:text="Location"
+                    android:layout_toStartOf="@+id/dob"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:layout_below="@+id/etCLocation"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etCEmail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Email Address" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_below="@+id/etCEmail"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/etCContact"
+                    android:text="Contact Number"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Mode"
+                    android:textSize="20dp"
+                    android:id="@+id/textView"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:layout_below="@+id/etCContact"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>>
+
+    </ScrollView>
 
 </FrameLayout>
