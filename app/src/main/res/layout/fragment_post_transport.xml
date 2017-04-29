@@ -103,7 +103,7 @@
                 android:hint="Ticket Cost"
                 android:inputType="number"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/DDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,21 +111,39 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/Cost"
                 android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="#111111"
                 android:ems="10"
-                android:hint="Departure Date [DD/MM/YYYY]"
-                android:layout_alignEnd="@+id/textView3" />
+                android:text="Departure Date"
+                android:layout_alignParentEnd="true" />
 
-            <EditText
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:endYear="2100"
+                android:startYear="2018"
+                android:id = "@+id/datepicker"
+                android:layout_below="@+id/DDate"
+                android:layout_centerInParent="true">
+            </DatePicker>
+
+            <TextView
                 android:id="@+id/DTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/DDate"
+                android:layout_below="@+id/datepicker"
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:inputType="time"
-                android:hint="Departure Time"
+                android:layout_marginBottom="5dp"
+                android:text="Departure Time"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="#111111"
                 android:layout_alignParentEnd="true" />
 
             <EditText
@@ -136,7 +154,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/activity_main_timepicker"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:hint="Number of seats available"
                 android:inputType="number"
                 android:textSize="20sp" />
@@ -152,14 +170,6 @@
                 android:text="Register"
                 android:layout_marginBottom="5dp"/>
 
-            <Button
-                android:id="@+id/buttonq"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/ic_date_range_black_24dp"
-                android:layout_above="@+id/DTime"
-                android:layout_toEndOf="@+id/DDate" />
-
             <TimePicker
                 android:id="@+id/activity_main_timepicker"
                 android:layout_width="wrap_content"
@@ -167,6 +177,7 @@
                 android:layout_below="@+id/DTime"
                 android:layout_marginLeft="14dip"
                 android:layout_marginRight="16dip"
+                android:paddingBottom="5dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true" />
 

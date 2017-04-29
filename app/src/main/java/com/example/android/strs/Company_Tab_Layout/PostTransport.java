@@ -52,12 +52,13 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
     private EditText etDestination;
     private EditText etJTime;
     private EditText etCost;
-    private EditText etDate;
-    private EditText etDTime;
+    private TextView etDate;
+    private TextView etDTime;
     private EditText etSeats;
     private Button bRegister;
+    private DatePicker datePicker;
 
-    private Button btn;
+    //private Button btn;
     int year_x, month_x, day_x,year,month,day;
     static final int DIALOG_ID = 0;
 
@@ -80,11 +81,11 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
             etDestination = (EditText) view.findViewById(R.id.etTDestination);
             etJTime = (EditText) view.findViewById(R.id.Time);
             etCost = (EditText) view.findViewById(R.id.Cost);
-            etDTime = (EditText) view.findViewById(R.id.DTime);
-            etDate = (EditText) view.findViewById(R.id.DDate);
+            etDTime = (TextView) view.findViewById(R.id.DTime);
+            etDate = (TextView) view.findViewById(R.id.DDate);
             etSeats = (EditText) view.findViewById(R.id.Seats);
             bRegister = (Button) view.findViewById(R.id.bTRegister);
-            btn = (Button) view.findViewById(R.id.buttonq);
+            datePicker = (DatePicker) view.findViewById( R.id.datepicker );
 
             final Calendar cal = Calendar.getInstance();
             year_x = cal.get(Calendar.YEAR);
@@ -94,12 +95,14 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
             month = month_x;
             day = day_x;
 
-            showDialogOnButtonClick();
+            //showDialogOnButtonClick();
 
             bRegister.setOnClickListener(new View.OnClickListener()
             {
 
                 public void onClick(View v) {
+
+                    setdate();
 
                     isValid = validateAccount();
 
@@ -113,10 +116,6 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
                         String etDDatestr = etDate.getText().toString();
                         String etDTimestr = etDTime.getText().toString();
                         String etSeatsstr = etSeats.getText().toString();
-
-                        etDTime = (EditText) view.findViewById(R.id.DTime);
-
-
 
                         //Insert the details in database
                         TransportContact t = new TransportContact();
@@ -154,62 +153,31 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
             etDTime.setText(stringNewTime);
         }
 
-    private void showDialogOnButtonClick()
-    {
-        btn.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getActivity().showDialog(DIALOG_ID);
-                    }
-                }
-        );
-    }
-
-    protected Dialog onCreateDialog(int id){
-        if(id== DIALOG_ID)
+        private void setdate()
         {
-            return new DatePickerDialog(getActivity(), dpickerListener, year_x, month_x, day_x);
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener dpickerListener = new DatePickerDialog.OnDateSetListener()
-    {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            year_x = year;
-            month_x = month + 1;
-            day_x = dayOfMonth;
-
-            Toast.makeText(getActivity(),day_x + "/" + month_x + "/" + year_x,Toast.LENGTH_SHORT).show();
-
-            if(day_x<10)
+            if(datePicker.getDayOfMonth()<10)
             {
-                if(month_x<10)
+                if(datePicker.getMonth()<10)
                 {
-                    etDate.setText( "0"+day_x + "/" + "0"+month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    etDate.setText("0" + datePicker.getDayOfMonth() + "/" + "0" + datePicker.getMonth() + "/" + datePicker.getYear());
                 }
                 else
                 {
-                    etDate.setText( "0"+day_x + "/" + month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    etDate.setText("0" + datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear());
                 }
             }
             else
             {
-                if(month_x<10)
+                if(datePicker.getMonth()<10)
                 {
-                    etDate.setText( day_x + "/" + "0"+month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    etDate.setText(datePicker.getDayOfMonth() + "/" + "0" + datePicker.getMonth() + "/" + datePicker.getYear());
                 }
                 else
                 {
-                    etDate.setText( day_x + "/" + month_x + "/" + year_x, TextView.BufferType.EDITABLE);
+                    etDate.setText(datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear());
                 }
             }
-
-
         }
-    };
 
     private boolean validateAccount()
     {
@@ -257,32 +225,16 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
             etCost.setError(null);
         }
 
-        if (etDate.length()!=10)
-        {
-            etDate.setError("Invalid Date\nDate Format-[DD/MM/YYYY]");
-            isValid = false;
-            return isValid;
-        } else {
-            etDate.setError(null);
-        }
-
         String etDatestr = etDate.getText().toString();
         year_x = Integer.parseInt(etDatestr.substring(6));
         month_x = Integer.parseInt(etDatestr.substring(3,5));
         day_x = Integer.parseInt(etDatestr.substring(0,2));
 
-
-        int a= validDate(etDatestr);
-        if (a!=1)
-        {
-            etDate.setError("Invalid Date\nDate Format-[DD/MM/YYYY]");
-            isValid = false;
-            return isValid;
-        }
-        else if(year_x < year)
+        if(year_x < year)
         {
 
             etDate.setError("Invalid Year!!!\nYou can not book a date from the past!!!");
+            Toast.makeText(getActivity(),"Invalid Year!!!\nYou can not book a date from the past!!!",Toast.LENGTH_LONG).show();
             isValid = false;
             return isValid;
         }
@@ -290,6 +242,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         {
 
             etDate.setError("Invalid Month!!!\nYou can not book a date from the past!!!");
+            Toast.makeText(getActivity(),"Invalid Month!!!\nYou can not book a date from the past!!!",Toast.LENGTH_LONG).show();
             isValid = false;
             return isValid;
         }
@@ -297,6 +250,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         {
 
             etDate.setError("Invalid Day!!!\nYou can not book a date from the past!!!");
+            Toast.makeText(getActivity(),"Invalid Day!!!\nYou can not book a date from the past!!!",Toast.LENGTH_LONG).show();
             isValid = false;
             return isValid;
         }
@@ -306,20 +260,6 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         }
 
         return isValid;
-    }
-
-    private int validDate(String date)
-    {
-        String dob = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$";
-        Matcher matcherobj = Pattern.compile(dob).matcher(date);
-        if(matcherobj.matches() && etDate.length()==10)
-        {
-            return  1;
-        }
-        else
-        {
-            return 0;
-        }
     }
 
 }

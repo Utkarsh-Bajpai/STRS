@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -22,10 +20,11 @@ public class MainActivity extends AppCompatActivity
         tw.setCharacterDelay(120);
         tw.animateText("Smart Transport Reservation\nSystem");
 
+
         final Button bCustomerLogin = (Button) findViewById(R.id.bCustomerLogin);
         final Button bCompanyLogin = (Button) findViewById(R.id.bCompanyLogin);
 
-        bCompanyLogin.setOnClickListener(new View.OnClickListener()
+        bCustomerLogin.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -34,7 +33,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        bCustomerLogin.setOnClickListener(new View.OnClickListener()
+
+        bCompanyLogin.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {

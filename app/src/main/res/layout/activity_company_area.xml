@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.strs.CompanyAreaActivity"
-    app:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+    app:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+    android:background="#FFCDD2">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"

@@ -48,11 +48,11 @@
                 android:text="   Company Login   "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/bCustomerLogin"
+                android:id="@+id/bCompanyLogin"
                 android:background="#EF5350"
                 android:layout_below="@+id/photo_image_company"
-                android:layout_alignLeft="@+id/bCompanyLogin"
-                android:layout_alignStart="@+id/bCompanyLogin"
+                android:layout_alignLeft="@+id/bCustomerLogin"
+                android:layout_alignStart="@+id/bCustomerLogin"
                 android:layout_marginTop="13dp" />
 
             <ImageView
@@ -63,7 +63,7 @@
                 android:src="@drawable/user"
                 android:layout_marginTop="15dp"
                 android:typeface="serif"
-                android:layout_below="@+id/bCustomerLogin"
+                android:layout_below="@+id/bCompanyLogin"
                 android:layout_alignLeft="@+id/photo_image_company"
                 android:layout_alignStart="@+id/photo_image_company" />
 
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:id="@+id/bCompanyLogin"
+                android:id="@+id/bCustomerLogin"
                 android:background="#42A5F5"
                 android:layout_below="@+id/photo_image_user"
                 android:layout_centerHorizontal="true" />
