@@ -72,8 +72,7 @@
                 android:layout_below="@+id/etTSource"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:hint="Transport Destination"
-                android:inputType="textPassword" />
+                android:hint="Transport Destination"/>
 
             <EditText
                 android:id="@+id/Time"

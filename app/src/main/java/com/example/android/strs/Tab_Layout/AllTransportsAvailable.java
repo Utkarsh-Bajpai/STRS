@@ -173,9 +173,9 @@ public class AllTransportsAvailable extends Fragment implements LoaderManager.Lo
                 TransportDatabaseHelper.COLUMN_SEATS
         };
 
-        return new CursorLoader(getActivity(), TransportContact.CONTENT_URI ,projection,null,null,null);
+        //return new CursorLoader(getActivity(), TransportContact.CONTENT_URI ,projection,null,null,null);
 
-        //return null;
+        return null;
     }
 
     @Override

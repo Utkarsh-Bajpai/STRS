@@ -40,12 +40,16 @@ import static com.example.android.strs.CompanyAreaActivity.cusername;
  * A simple {@link Fragment} subclass.
  */
 
+
+
 public class PostTransport extends Fragment  implements TimePicker.OnTimeChangedListener{
 
 
     public PostTransport() {
         // Required empty public constructor
     }
+
+
 
     private EditText etName;
     private EditText etSource;
@@ -118,7 +122,8 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
                         String etSeatsstr = etSeats.getText().toString();
 
                         //Insert the details in database
-                        TransportContact t = new TransportContact();
+                        TransportContact t = new TransportContact(etNamestr,etSourcestr,etDestinationstr,etJTimestr,
+                                etCoststr,etDDatestr,etDTimestr,etSeatsstr,cusername);
 
                         t.setcusername(cusername);
                         t.settname(etNamestr);

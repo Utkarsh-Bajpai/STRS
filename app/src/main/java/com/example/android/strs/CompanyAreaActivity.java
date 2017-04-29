@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.android.strs.AllTransport.AllTransports;
 import com.example.android.strs.Tab_Layout.AllTransportsAvailable;
 import com.example.android.strs.Company_Tab_Layout.CompanyInfo;
 import com.example.android.strs.Company_Tab_Layout.PostTransport;
@@ -34,7 +35,7 @@ public class CompanyAreaActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragments(new AllTransportsAvailable(),"All Transports");
+        viewPagerAdapter.addFragments(new AllTransports(),"All Transports");
         viewPagerAdapter.addFragments(new PostTransport(),"Add New Transport");
         viewPagerAdapter.addFragments(new CompanyInfo(),"Company Information");
         viewPager.setAdapter(viewPagerAdapter);

@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.android.strs.AllTransport.AllTransports;
 import com.example.android.strs.Tab_Layout.AllTransportsAvailable;
 import com.example.android.strs.Tab_Layout.ViewPagerAdapter;
 import com.example.android.strs.Customer_Tab_Layout.MyBookings;
@@ -33,7 +34,7 @@ public class CustomerAreaActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragments(new AllTransportsAvailable(),"All Transports");
+        viewPagerAdapter.addFragments(new AllTransports(),"All Transports");
         viewPagerAdapter.addFragments(new MyBookings(),"My Bookings");
         viewPagerAdapter.addFragments(new UserInfo(),"My Account");
         viewPager.setAdapter(viewPagerAdapter);
