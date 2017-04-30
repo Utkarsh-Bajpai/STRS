@@ -1,38 +1,45 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer_Tab_Layout.MyBookings">
+    tools:context=".Customer_Tab_Layout.MyBookings"
+    android:id="@+id/mybookings">
 
-    <ListView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:id="@+id/all_transports"
-        android:layout_marginTop="40dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/transport_recyclerview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+
+    </android.support.v7.widget.RecyclerView>
 
     <RelativeLayout
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_gravity="center">
 
         <ImageView
-            android:id="@+id/booking"
+            android:id="@+id/empty_shelter_image"
             android:layout_width="250dp"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/booking"/>
+            android:src="@drawable/booking"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/empty_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/booking"
+            android:layout_below="@+id/empty_shelter_image"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-medium"
             android:paddingTop="16dp"
             android:text="You have not booked any transport!!!"
-            android:textAppearance="?android:textAppearanceMedium"/>
+            android:textAppearance="?android:textAppearanceMedium"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/empty_subtitle_text"
@@ -44,8 +51,9 @@
             android:paddingTop="8dp"
             android:text="Book Transport and come back again later!!!"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#A2AAB0"/>
+            android:textColor="#A2AAB0"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

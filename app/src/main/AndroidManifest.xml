@@ -22,6 +22,10 @@
         <activity android:name=".CompanyRegisterActivity" />
         <activity android:name=".CompanyAreaActivity" />
         <activity android:name=".CustomerAreaActivity" />
+        <activity
+            android:name=".Payment"
+            android:label="@string/title_activity_payment"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
