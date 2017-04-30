@@ -1,15 +1,11 @@
 package com.example.android.strs;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-import com.example.android.strs.AllTransport.AllTransports;
-import com.example.android.strs.Tab_Layout.AllTransportsAvailable;
+import com.example.android.strs.Tab_Layout.AllTransports;
 import com.example.android.strs.Company_Tab_Layout.CompanyInfo;
 import com.example.android.strs.Company_Tab_Layout.PostTransport;
 import com.example.android.strs.Tab_Layout.ViewPagerAdapter;

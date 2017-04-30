@@ -5,8 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.android.strs.AllTransport.AllTransports;
-import com.example.android.strs.Tab_Layout.AllTransportsAvailable;
+import com.example.android.strs.Tab_Layout.AllTransports;
 import com.example.android.strs.Tab_Layout.ViewPagerAdapter;
 import com.example.android.strs.Customer_Tab_Layout.MyBookings;
 import com.example.android.strs.Customer_Tab_Layout.UserInfo;
