@@ -20,6 +20,7 @@ import com.example.android.strs.R;
 
 import com.example.android.strs.data_booked_transport.BookedTransportContact;
 import com.example.android.strs.data_booked_transport.BookedTransportdatabaseHelper;
+import com.example.android.strs.data_company.CompanyDatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ import static com.example.android.strs.CustomerAreaActivity.username;
 public class MyBookings extends Fragment {
 
     BookedTransportdatabaseHelper helper;
+    CompanyDatabaseHelper helper2;
     List<BookedTransportContact> dbList;
 
     private RecyclerView mRecyclerView;
@@ -58,9 +60,15 @@ public class MyBookings extends Fragment {
         Cursor.moveToFirst();
         do
         {
-            if(Cursor != null || Cursor.moveToFirst())
+            //if(Cursor != null || Cursor.moveToFirst())
+            if(Cursor != null && Cursor.getCount()>0)
             {
-                if(username == Cursor.getString(9))
+
+                Log.d("Curor ", "Value: " + Cursor.getString(9));
+                Log.d("Username ", "Value2: " + username);
+                String a=Cursor.getString(9);
+                String b = username;
+                if(a.equals(b))
                 {
                     name.add(Cursor.getString(0));
                     source.add(Cursor.getString(1));
@@ -97,6 +105,7 @@ public class MyBookings extends Fragment {
 
 
         helper = new BookedTransportdatabaseHelper(getActivity());
+        helper2 = new CompanyDatabaseHelper(getActivity());
         dbList= new ArrayList<BookedTransportContact>();
         dbList = helper.getDataFromDB();
 
@@ -137,7 +146,10 @@ public class MyBookings extends Fragment {
             @Override
             public void onItemClick(int position, View v) {
                 Log.i(LOG_TAG, " Clicked on Item " + position);
-                Toast.makeText(getActivity()," Booked " + position,Toast.LENGTH_SHORT).show();
+                String email = helper2.searchEmail(company.get(position));
+                String contact = helper2.searchContact(company.get(position));
+                Toast.makeText(getActivity(),"\t\t\t\t\t\t\t\t\t\t\t\tBooked Ticket " + position+"\nFor any changes contact company "+name.get(position)+
+                        "\nContact No. - "+contact+"\nEmail Id - "+email,Toast.LENGTH_LONG).show();
 
             }
         });
@@ -162,6 +174,11 @@ public class MyBookings extends Fragment {
                     Price.get(index),
                     seats.get(index),
                     company.get(index),username);
+
+
+                    /*
+
+                    //"1","2","3","4","5","6","7","8","9","10");
 
 
                     /*"1Name",
