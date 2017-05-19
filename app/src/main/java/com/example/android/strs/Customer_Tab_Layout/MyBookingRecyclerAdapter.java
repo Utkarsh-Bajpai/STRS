@@ -28,7 +28,7 @@ public class MyBookingRecyclerAdapter extends RecyclerView
 
     CompanyDatabaseHelper helper;
 
-    private ArrayList<BookedTransportContact> mDataset;
+    //private ArrayList<BookedTransportContact> dbList;
     private static MyClickListener myClickListener;
 
     public static String namea;
@@ -43,13 +43,12 @@ public class MyBookingRecyclerAdapter extends RecyclerView
 
     static   List<BookedTransportContact> dbList;
     static Context context;
-    MyBookingRecyclerAdapter(Context context, List<BookedTransportContact> dbList ){
-
-        helper = new CompanyDatabaseHelper(context);
+    public MyBookingRecyclerAdapter(Context context, List<BookedTransportContact> dbList )
+    {
+        this.helper = new CompanyDatabaseHelper(context.getApplicationContext());
         this.dbList = new ArrayList<BookedTransportContact>();
         this.context = context;
         this.dbList = dbList;
-
     }
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
@@ -80,6 +79,7 @@ public class MyBookingRecyclerAdapter extends RecyclerView
             time = (TextView) itemView.findViewById(R.id.textView15);
             seats = (TextView) itemView.findViewById(R.id.textView16);
             company = (TextView) itemView.findViewById(R.id.textView18);
+            pic = (ImageView) itemView.findViewById(R.id.imageView);
 
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
@@ -97,10 +97,6 @@ public class MyBookingRecyclerAdapter extends RecyclerView
 
     }
 
-    public MyBookingRecyclerAdapter(ArrayList<BookedTransportContact> myDataset) {
-        mDataset = myDataset;
-    }
-
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
@@ -113,40 +109,38 @@ public class MyBookingRecyclerAdapter extends RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(DataObjectHolder holder, int position) {
+    public void onBindViewHolder(DataObjectHolder holder, int position)
+    {
+        holder.name.setText(dbList.get(position).gettname());
+        holder.source.setText(dbList.get(position).getsource());
+        holder.destination.setText(dbList.get(position).getdestination());
+        holder.duration.setText(dbList.get(position).getjtime());
+        holder.price.setText(dbList.get(position).getcost());
+        holder.date.setText(dbList.get(position).getdate());
+        holder.time.setText(dbList.get(position).getdtime());
+        holder.seats.setText(dbList.get(position).getseats());
+        holder.company.setText(dbList.get(position).getcusername());
 
-        helper = new CompanyDatabaseHelper(context);
+        String mode, user;
+        user = dbList.get(position).getcusername();
 
-        holder.name.setText(mDataset.get(position).gettname());
-        holder.source.setText(mDataset.get(position).getsource());
-        holder.destination.setText(mDataset.get(position).getdestination());
-        holder.duration.setText(mDataset.get(position).getjtime());
-        holder.price.setText(mDataset.get(position).getcost());
-        holder.date.setText(mDataset.get(position).getdate());
-        holder.time.setText(mDataset.get(position).getdtime());
-        holder.seats.setText(mDataset.get(position).getseats());
-        holder.company.setText(mDataset.get(position).getcusername());
-
-        String mode, user = "qqq";
-
-        /*if(mDataset.get(position).getcusername()!=null)
+        if( user != null)
         {
-            user = mDataset.get(position).getcusername();
             mode = helper.searchMode(user);
 
-            if(mode.equals(R.string.mode_cab))
+            if(mode.equals(context.getResources().getString(R.string.mode_cab)))
             {
                 holder.pic.setImageResource(R.drawable.taxi);
             }
-            else if(mode.equals(R.string.mode_bus))
+            else if(mode.equals(context.getResources().getString(R.string.mode_bus)))
             {
                 holder.pic.setImageResource(R.drawable.bus);
             }
-            else if(mode.equals(R.string.mode_train))
+            else if(mode.equals(context.getResources().getString(R.string.mode_train)))
             {
                 holder.pic.setImageResource(R.drawable.train);
             }
-            else if(mode.equals(R.string.mode_airplane))
+            else if(mode.equals(context.getResources().getString(R.string.mode_airplane)))
             {
                 holder.pic.setImageResource(R.drawable.plane);
             }
@@ -154,23 +148,22 @@ public class MyBookingRecyclerAdapter extends RecyclerView
             {
                 holder.pic.setImageResource(R.drawable.strslogo);
             }
-        }*/
+        }
 
     }
 
     public void addItem(BookedTransportContact dataObj, int index) {
-        mDataset.add(index, dataObj);
+        dbList.add(index, dataObj);
         notifyItemInserted(index);
     }
 
     public void deleteItem(int index) {
-        mDataset.remove(index);
+        dbList.remove(index);
         notifyItemRemoved(index);
     }
 
-    @Override
     public int getItemCount() {
-        return mDataset.size();
+        return dbList.size();
     }
 
     public interface MyClickListener {

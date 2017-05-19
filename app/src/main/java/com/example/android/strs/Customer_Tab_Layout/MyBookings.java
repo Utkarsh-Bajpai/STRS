@@ -114,7 +114,7 @@ public class MyBookings extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         maketext();
-        mAdapter = new MyBookingRecyclerAdapter(getDataSet());
+        mAdapter = new MyBookingRecyclerAdapter(getContext(),getDataSet());
         mRecyclerView.setAdapter(mAdapter);
 
         if (mAdapter.getItemCount() == 0) {

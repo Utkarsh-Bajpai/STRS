@@ -122,7 +122,7 @@ public class AllTransports extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         maketext();
-        mAdapter = new MyRecyclerAdapter(getDataSet());//MyRecyclerAdapter(getActivity(),helper.getDataFromDB());
+        mAdapter = new MyRecyclerAdapter(getContext(), getDataSet());//MyRecyclerAdapter(getActivity(),helper.getDataFromDB());
         mRecyclerView.setAdapter(mAdapter);
 
         if (mAdapter.getItemCount() == 0) {

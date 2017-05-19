@@ -6,7 +6,7 @@ package com.example.android.strs.Tab_Layout;
 
 
         import android.content.Context;
-        import android.support.v7.app.AppCompatActivity;
+        import android.content.res.Resources;
         import android.support.v7.widget.RecyclerView;
         import android.util.Log;
         import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ package com.example.android.strs.Tab_Layout;
         import android.view.ViewGroup;
         import android.widget.ImageView;
         import android.widget.TextView;
-        import android.widget.Toast;
 
         import com.example.android.strs.R;
         import com.example.android.strs.data_company.CompanyDatabaseHelper;
@@ -28,7 +27,6 @@ public class MyRecyclerAdapter extends RecyclerView
         .DataObjectHolder>{
     private static String LOG_TAG = "MyRecyclerViewAdapter";
 
-    private ArrayList<TransportContact> mDataset;
     private static MyClickListener myClickListener;
 
     public static String namea;
@@ -48,7 +46,6 @@ public class MyRecyclerAdapter extends RecyclerView
 
     public MyRecyclerAdapter(Context context, List<TransportContact> dbList )
     {
-
         this.helper = new CompanyDatabaseHelper(context.getApplicationContext());
         this.dbList = new ArrayList<TransportContact>();
         this.context = context;
@@ -101,10 +98,6 @@ public class MyRecyclerAdapter extends RecyclerView
 
     }
 
-    public MyRecyclerAdapter(ArrayList<TransportContact> myDataset) {
-        mDataset = myDataset;
-    }
-
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,int viewType)
     {
@@ -119,36 +112,36 @@ public class MyRecyclerAdapter extends RecyclerView
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
 
-        holder.name.setText(mDataset.get(position).gettname());
-        holder.source.setText(mDataset.get(position).getsource());
-        holder.destination.setText(mDataset.get(position).getdestination());
-        holder.duration.setText(mDataset.get(position).getjtime());
-        holder.price.setText(mDataset.get(position).getcost());
-        holder.date.setText(mDataset.get(position).getdate());
-        holder.time.setText(mDataset.get(position).getdtime());
-        holder.seats.setText(mDataset.get(position).getseats());
-        holder.company.setText(mDataset.get(position).getcusername());
+        holder.name.setText(dbList.get(position).gettname());
+        holder.source.setText(dbList.get(position).getsource());
+        holder.destination.setText(dbList.get(position).getdestination());
+        holder.duration.setText(dbList.get(position).getjtime());
+        holder.price.setText(dbList.get(position).getcost());
+        holder.date.setText(dbList.get(position).getdate());
+        holder.time.setText(dbList.get(position).getdtime());
+        holder.seats.setText(dbList.get(position).getseats());
+        holder.company.setText(dbList.get(position).getcusername());
 
         String mode, user;
-        user = mDataset.get(position).getcusername();
+        user = dbList.get(position).getcusername();
 
-       /* if( user != null)
+        if( user != null)
         {
             mode = helper.searchMode(user);
 
-            if(mode.equals(R.string.mode_cab))
+            if(mode.equals(context.getResources().getString(R.string.mode_cab)))
             {
                 holder.pic.setImageResource(R.drawable.taxi);
             }
-            else if(mode.equals(R.string.mode_bus))
+            else if(mode.equals(context.getResources().getString(R.string.mode_bus)))
             {
                 holder.pic.setImageResource(R.drawable.bus);
             }
-            else if(mode.equals(R.string.mode_train))
+            else if(mode.equals(context.getResources().getString(R.string.mode_train)))
             {
                 holder.pic.setImageResource(R.drawable.train);
             }
-            else if(mode.equals(R.string.mode_airplane))
+            else if(mode.equals(context.getResources().getString(R.string.mode_airplane)))
             {
                 holder.pic.setImageResource(R.drawable.plane);
             }
@@ -156,23 +149,23 @@ public class MyRecyclerAdapter extends RecyclerView
             {
                 holder.pic.setImageResource(R.drawable.strslogo);
             }
-        }*/
+        }
 
     }
 
     public void addItem(TransportContact dataObj, int index) {
-        mDataset.add(index, dataObj);
+        dbList.add(index, dataObj);
         notifyItemInserted(index);
     }
 
     public void deleteItem(int index) {
-        mDataset.remove(index);
+        dbList.remove(index);
         notifyItemRemoved(index);
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return dbList.size();
     }
 
     public interface MyClickListener {
