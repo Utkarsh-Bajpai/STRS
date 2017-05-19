@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_gender_options">
+        <item>@string/gender_unknown</item>
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+    </string-array>
+
+    <string-array name="array_mode_options">
+        <item>@string/mode_unknown</item>
+        <item>@string/mode_cab</item>
+        <item>@string/mode_bus</item>
+        <item>@string/mode_train</item>
+        <item>@string/mode_airplane</item>
+    </string-array>
+
+</resources>

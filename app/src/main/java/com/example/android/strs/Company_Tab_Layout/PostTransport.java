@@ -189,7 +189,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         isValid = true;
 
         if (etName.length() < 3) {
-            etName.setError("Company Name should have atleast 3 characters");
+            etName.setError("Transport Name should have atleast 3 characters");
             isValid = false;
             return isValid;
         } else {
@@ -197,7 +197,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         }
 
         if (etSource.length() < 3) {
-            etSource.setError("Company Username should have atleast 3 characters");
+            etSource.setError("Source should have atleast 3 characters");
             isValid = false;
             return isValid;
         } else {
@@ -205,7 +205,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         }
 
         if (etDestination.length() < 3) {
-            etDestination.setError("Company Username should have atleast 3 characters");
+            etDestination.setError("Destination should have atleast 3 characters");
             isValid = false;
             return isValid;
         } else {
@@ -214,7 +214,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
 
         if (etJTime.length()<2)
         {
-            etJTime.setError("Invalid Cost");
+            etJTime.setError("Invalid Time\nEnter time in Days:Hours:Minutes");
             isValid = false;
             return isValid;
         } else {
@@ -243,7 +243,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
             isValid = false;
             return isValid;
         }
-        else if(year_x == year_x && month_x < month)
+        else if(month_x < month)
         {
 
             etDate.setError("Invalid Month!!!\nYou can not book a date from the past!!!");
@@ -251,7 +251,7 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
             isValid = false;
             return isValid;
         }
-        else if(year_x == year_x && month_x == month && day_x<day)
+        else if(day_x<day)
         {
 
             etDate.setError("Invalid Day!!!\nYou can not book a date from the past!!!");
@@ -262,6 +262,37 @@ public class PostTransport extends Fragment  implements TimePicker.OnTimeChanged
         else
         {
             etDate.setError(null);
+        }
+
+        if (etSeats.length() < 1)
+        {
+            etSeats.setError("Enter Number of Seats");
+            isValid = false;
+            return isValid;
+        } else {
+            etSeats.setError(null);
+        }
+
+        String seatstr = etSeats.getText().toString();
+        int seat = Integer.parseInt(seatstr);
+
+        if (seat < 1)
+        {
+            etSeats.setError("Invalid Number of Seats");
+            isValid = false;
+            return isValid;
+        } else {
+            etSeats.setError(null);
+        }
+
+        if (etDTime.length() < 3 )
+        {
+            Toast.makeText(getActivity(),"Select The Departure Time!!!",Toast.LENGTH_SHORT).show();
+            etDTime.setError("Select The Departure Time");
+            isValid = false;
+            return isValid;
+        } else {
+            etDTime.setError(null);
         }
 
         return isValid;

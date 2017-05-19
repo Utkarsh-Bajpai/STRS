@@ -12,9 +12,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
         android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp">
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="70dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:layout_below="@+id/etTSource"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:hint="Transport Destination"/>
+                android:hint="Transport Destination" />
 
             <EditText
                 android:id="@+id/Time"
@@ -85,8 +85,8 @@
                 android:layout_below="@+id/etTDestination"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:inputType="time"
-                android:hint="Journey Duration" />
+                android:hint="Journey Duration [Days:Hours:Minutes]"
+                android:inputType="time" />
 
             <EditText
                 android:id="@+id/Cost"
@@ -100,74 +100,49 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Ticket Cost"
-                android:inputType="number"/>
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/DDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/Cost"
-                android:layout_marginTop="20dp"
-                android:textSize="20dp"
-                android:gravity="center"
+                android:layout_below="@+id/Seats"
                 android:layout_marginBottom="5dp"
-                android:textColor="#111111"
+                android:layout_marginTop="20dp"
                 android:ems="10"
+                android:gravity="center"
                 android:text="Departure Date"
-                android:layout_alignParentEnd="true" />
+                android:textColor="#111111"
+                android:textSize="20dp" />
 
             <DatePicker
+                android:id="@+id/datepicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:endYear="2100"
-                android:startYear="2018"
-                android:id = "@+id/datepicker"
                 android:layout_below="@+id/DDate"
-                android:layout_centerInParent="true">
-            </DatePicker>
+                android:layout_centerInParent="true"
+                android:endYear="2100"
+                android:startYear="2018"></DatePicker>
 
             <TextView
                 android:id="@+id/DTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/datepicker"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:inputType="time"
-                android:layout_marginBottom="5dp"
-                android:text="Departure Time"
-                android:textSize="20dp"
-                android:gravity="center"
-                android:textColor="#111111"
-                android:layout_alignParentEnd="true" />
-
-            <EditText
-                android:id="@+id/Seats"
-                android:layout_width="60sp"
-                android:layout_height="40sp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/activity_main_timepicker"
-                android:layout_marginTop="30dp"
-                android:hint="Number of seats available"
-                android:inputType="number"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/bTRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Seats"
-                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/datepicker"
+                android:layout_marginBottom="5dp"
                 android:layout_marginTop="20dp"
-                android:background="#EF5350"
-                android:text="Register"
-                android:layout_marginBottom="5dp"/>
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="time"
+                android:text="Departure Time"
+                android:textColor="#111111"
+                android:textSize="20dp" />
 
             <TimePicker
                 android:id="@+id/activity_main_timepicker"
@@ -176,9 +151,33 @@
                 android:layout_below="@+id/DTime"
                 android:layout_marginLeft="14dip"
                 android:layout_marginRight="16dip"
-                android:paddingBottom="5dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true" />
+                android:focusableInTouchMode="true"
+                android:paddingBottom="5dp" />
+
+            <EditText
+                android:id="@+id/Seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/Cost"
+                android:hint="Number of seats available"
+                android:inputType="number"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/bTRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/activity_main_timepicker"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="20dp"
+                android:background="#EF5350"
+                android:text="Register" />
 
         </RelativeLayout>
 
