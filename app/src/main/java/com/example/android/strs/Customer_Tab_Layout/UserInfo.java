@@ -31,17 +31,6 @@ import static com.example.android.strs.CustomerAreaActivity.username;
  */
 public class UserInfo extends Fragment {
 
-//    Context context;
-//
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState)
-//    {
-//        super.onActivityCreated(savedInstanceState);
-//        context = getActivity();
-//    }
-
-
-
     private TextView etName;
     private TextView etDate;
     private TextView etEmail;
@@ -74,12 +63,6 @@ public class UserInfo extends Fragment {
 
         //setDetails();
         etUsername.setText("Username: " + username,TextView.BufferType.EDITABLE);
-
-        /*String name = "Utkarsh Bajpai";
-        String dob = "27/08/1997";
-        String email = "utkarsh.bajpai2015@vit.ac.in";
-        String contact = "9873751601";
-        String gender = "Male";*/
 
         String name = helper.searchName(username);
         etName.setText(name,TextView.BufferType.EDITABLE);

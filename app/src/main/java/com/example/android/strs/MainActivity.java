@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
 
         final Button bCustomerLogin = (Button) findViewById(R.id.bCustomerLogin);
         final Button bCompanyLogin = (Button) findViewById(R.id.bCompanyLogin);
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         bCustomerLogin.setOnClickListener(new View.OnClickListener()
         {
@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Hello "+ username, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "This is a project Made By UTKARSH BAJPAI\n\t\t\t\t\t\tVIT UNIVERSITY - 15BCE2082", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
             }
-        });*/
+        });
     }
 }

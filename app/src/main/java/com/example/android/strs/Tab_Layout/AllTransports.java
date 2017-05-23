@@ -1,5 +1,8 @@
 package com.example.android.strs.Tab_Layout;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.strs.CustomerAreaActivity;
 import com.example.android.strs.Payment;
 import com.example.android.strs.R;
 import com.example.android.strs.data_booked_transport.BookedTransportContact;
@@ -26,8 +30,10 @@ import com.example.android.strs.data_transport.TransportDatabaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.ACTIVITY_SERVICE;
 import static com.example.android.strs.CompanyAreaActivity.cusername;
 import static com.example.android.strs.CustomerAreaActivity.username;
+import static com.example.android.strs.Tab_Layout.MyRecyclerAdapter.context;
 
 /**
  * Created by Utkarsh._.Bajpai on 29-Apr-17.
@@ -66,6 +72,8 @@ public class AllTransports extends Fragment {
     String companya;
     String customera;
 
+    private String CurrentActivity = null;
+
     int i=0;
 
     public void maketext()
@@ -74,7 +82,6 @@ public class AllTransports extends Fragment {
         Cursor.moveToFirst();
         do
         {
-            //if(Cursor != null || Cursor.moveToFirst())
             if(Cursor != null && Cursor.getCount()>0)
             {
                 name.add(Cursor.getString(0));
@@ -111,7 +118,6 @@ public class AllTransports extends Fragment {
 
         i=0;
 
-
         helper = new TransportDatabaseHelper(getActivity());
         helper2 = new BookedTransportdatabaseHelper(getActivity());
         dbList= new ArrayList<TransportContact>();
@@ -122,7 +128,7 @@ public class AllTransports extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         maketext();
-        mAdapter = new MyRecyclerAdapter(getContext(), getDataSet());//MyRecyclerAdapter(getActivity(),helper.getDataFromDB());
+        mAdapter = new MyRecyclerAdapter(getContext(), getDataSet());
         mRecyclerView.setAdapter(mAdapter);
 
         if (mAdapter.getItemCount() == 0) {
@@ -131,7 +137,6 @@ public class AllTransports extends Fragment {
             TextView text = (TextView) view.findViewById(R.id.empty_title_text);
             TextView text2 = (TextView) view.findViewById(R.id.empty_subtitle_text);
             ImageView imgView=(ImageView) view.findViewById(R.id.empty_shelter_image);
-            //Drawable drawable  = getResources().(R.drawable.notransport);
 
             text.setText("The Transport database is empty!!!");
             text2.setText("Come Back Again Later!!!");
@@ -146,14 +151,17 @@ public class AllTransports extends Fragment {
         return view;
     }
 
-     public void onResume() {
+     public void onResume()
+     {
         super.onResume();
-        ((MyRecyclerAdapter) mAdapter).setOnItemClickListener(new MyRecyclerAdapter
-                .MyClickListener() {
-
+        ((MyRecyclerAdapter) mAdapter).setOnItemClickListener(new MyRecyclerAdapter.MyClickListener()
+        {
             @Override
             public void onItemClick(int position, View v) {
-                Log.i(LOG_TAG, " Clicked on Item " + position);
+
+                ActivityManager am = (ActivityManager)context.getSystemService(ACTIVITY_SERVICE);
+                List< ActivityManager.RunningTaskInfo > taskInfo = am.getRunningTasks(1);
+                CurrentActivity = taskInfo.get(0).topActivity.getClassName();
 
                 namea = name.get(position);
                 sourcea = source.get(position);
@@ -169,7 +177,7 @@ public class AllTransports extends Fragment {
 
                 if(value>0)
                 {
-                    t = new BookedTransportContact(namea,sourcea,destinationa,durationa,datea,timea,Pricea,seatsa,companya,customera);
+                    t = new BookedTransportContact(namea, sourcea, destinationa, durationa, datea, timea, Pricea, seatsa, companya, customera);
 
                     t.setcusername(companya);
                     t.settname(namea);
@@ -181,35 +189,34 @@ public class AllTransports extends Fragment {
                     t.setdtime(timea);
                     t.setseats(seatsa);
                     t.setusername(customera);
+                }
 
-                    helper2.insertContact(t);
+                if(CurrentActivity.equals("com.example.android.strs.CustomerAreaActivity"))
+                {
+                    if(value>0)
+                    {
+                        helper2.insertContact(t);
 
-                    helper.modify(companya,namea,seatsa);
+                        helper.modify(companya, namea, seatsa);
 
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(), Payment.class);
-                    getActivity().startActivity(intent);
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), Payment.class);
+                        getActivity().startActivity(intent);
 
-                    //Toast.makeText(getActivity(),"\t\t\t\t\t\tCongratulations!!!\nYou have booked a seat on " + namea,Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(),"All the seats on "+ namea + " are booked!!!\n\t\t\t\t\t\tTry another Transport",Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                 else
                 {
-                    Toast.makeText(getActivity(),"All the seats on "+ namea + " are booked!!!\n\t\t\t\t\t\tTry another Transport",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"The Transport "+ namea + " has been posted by the company " + companya,Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
         });
     }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second, menu);
-        return true;
-    }*/
 
     private ArrayList<TransportContact> getDataSet() {
         ArrayList results = new ArrayList<TransportContact>();
@@ -224,30 +231,6 @@ public class AllTransports extends Fragment {
                     seats.get(index),
                     company.get(index));
 
-
-                    /*"1Name",
-                    "2Source",
-                    "3Destination",
-                    "4Duration",
-                    "6Date",
-                    "7Time",
-                    "5Price",
-                    "8Seats",
-                    "9Company");
-                    /*,
-
-                    /*helper.searchTName(username),helper.searchTSource(username),
-                    helper.searchTDestination(username),helper.searchJTime(username),helper.searchCost(username),helper.searchDate(username)
-                    ,helper.searchDTime(username),helper.searchSeats(username),cusername
-                    /*"1Name",
-                    "2Source",
-                    "3Destination",
-                    "4Duration",
-                    "5Price",
-                    "6Date",
-                    "7Time",
-                    "8Seats",
-                    "9Company"*/
             results.add(index, obj);
         }
         return results;

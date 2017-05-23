@@ -60,7 +60,6 @@ public class MyBookings extends Fragment {
         Cursor.moveToFirst();
         do
         {
-            //if(Cursor != null || Cursor.moveToFirst())
             if(Cursor != null && Cursor.getCount()>0)
             {
 
@@ -123,7 +122,6 @@ public class MyBookings extends Fragment {
             TextView text = (TextView) view.findViewById(R.id.empty_title_text);
             TextView text2 = (TextView) view.findViewById(R.id.empty_subtitle_text);
             ImageView imgView=(ImageView) view.findViewById(R.id.empty_shelter_image);
-            //Drawable drawable  = getResources().(R.drawable.notransport);
 
             text.setText("The Transport database is empty!!!");
             text2.setText("Come Back Again Later!!!");
@@ -156,13 +154,6 @@ public class MyBookings extends Fragment {
         });
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second, menu);
-        return true;
-    }*/
-
     private ArrayList<BookedTransportContact> getDataSet() {
         ArrayList results = new ArrayList<BookedTransportdatabaseHelper>();
         for (int index = 0; index < i; index++) {
@@ -176,35 +167,6 @@ public class MyBookings extends Fragment {
                     seats.get(index),
                     company.get(index),username);
 
-
-                    /*
-
-                    //"1","2","3","4","5","6","7","8","9","10");
-
-
-                    /*"1Name",
-                    "2Source",
-                    "3Destination",
-                    "4Duration",
-                    "6Date",
-                    "7Time",
-                    "5Price",
-                    "8Seats",
-                    "9Company");
-                    /*,
-
-                    /*helper.searchTName(username),helper.searchTSource(username),
-                    helper.searchTDestination(username),helper.searchJTime(username),helper.searchCost(username),helper.searchDate(username)
-                    ,helper.searchDTime(username),helper.searchSeats(username),cusername
-                    /*"1Name",
-                    "2Source",
-                    "3Destination",
-                    "4Duration",
-                    "5Price",
-                    "6Date",
-                    "7Time",
-                    "8Seats",
-                    "9Company"*/
             results.add(index, obj);
         }
         return results;

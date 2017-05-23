@@ -56,12 +56,6 @@ public class CompanyInfo extends Fragment {
         //setDetails();
         etCUsername.setText("Username: " + cusername ,TextView.BufferType.EDITABLE);
 
-        /*String name = "Utkarsh Travels";
-        String location = "New Delhi";
-        String email = "utkarsh.bajpai2015@vit.ac.in";
-        String contact = "9873751601";
-        String mode = "Cab/Taxi";*/
-
         String name = helper.searchName(cusername);
         etCName.setText(name,TextView.BufferType.EDITABLE);
 

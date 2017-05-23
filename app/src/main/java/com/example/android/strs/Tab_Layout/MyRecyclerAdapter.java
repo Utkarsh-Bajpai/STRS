@@ -89,7 +89,6 @@ public class MyRecyclerAdapter extends RecyclerView
         @Override
         public void onClick(View v) {
             myClickListener.onItemClick(getAdapterPosition(), v);
-            //Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -101,8 +100,7 @@ public class MyRecyclerAdapter extends RecyclerView
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.display_transport, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_transport, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
 

@@ -76,7 +76,7 @@ public class CustomerLoginActivity extends AppCompatActivity
         isValid = true;
 
         if (etUsername.length() < 3) {
-            etUsername.setError("Company Username should have atleast 3 characters");
+            etUsername.setError("Customer Username should have atleast 3 characters");
             isValid = false;
             return isValid;
         } else {

@@ -12,31 +12,43 @@
     android:background="#FFF59D">
 
 
-    <ImageView
-        android:id="@+id/photo_image_viewa"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="78dp"
-        android:src="@drawable/strslogo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <com.example.android.strs.TypeWriter
-        android:text="Smart Transport Reservation System"
-        android:textAllCaps="true"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:typeface="serif"
-        android:textSize="25sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:id="@+id/textView3"
-        android:gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/photo_image_viewa"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:id="@+id/photo_image_viewa"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="78dp"
+                android:src="@drawable/strslogo"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <com.example.android.strs.TypeWriter
+                android:text="Smart Transport Reservation System"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:typeface="serif"
+                android:textSize="25sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:id="@+id/textView3"
+                android:gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/photo_image_viewa"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+        </RelativeLayout>>
+
+    </ScrollView>>
 
 
 </RelativeLayout>

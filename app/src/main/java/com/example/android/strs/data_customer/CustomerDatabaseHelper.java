@@ -88,14 +88,6 @@ public class CustomerDatabaseHelper extends SQLiteOpenHelper {
         return(password);
     }
 
-    /*public Cursor searchName(String uname)
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select * from "+ TABLE_NAME;
-        Cursor cursor = db.rawQuery(query,null);
-        return(cursor);
-    }*/
-
     public String searchName(String uname)
     {
 

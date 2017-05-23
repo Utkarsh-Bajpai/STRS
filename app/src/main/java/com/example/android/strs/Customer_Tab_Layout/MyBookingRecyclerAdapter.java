@@ -28,18 +28,7 @@ public class MyBookingRecyclerAdapter extends RecyclerView
 
     CompanyDatabaseHelper helper;
 
-    //private ArrayList<BookedTransportContact> dbList;
     private static MyClickListener myClickListener;
-
-    public static String namea;
-    String sourcea;
-    String destinationa;
-    String durationa;
-    String Pricea;
-    String datea;
-    String timea;
-    String seatsa;
-    String companya;
 
     static   List<BookedTransportContact> dbList;
     static Context context;
